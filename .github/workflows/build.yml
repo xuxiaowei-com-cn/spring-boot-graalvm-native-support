@@ -9,11 +9,11 @@ on:
 jobs:
   build:
     name: build
-    runs-on: ${{ matrix.runner }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         java-version: [ 25 ]
-        runner:
+        os:
           - macos-26-intel
           - macos-26
           - ubuntu-24.04
