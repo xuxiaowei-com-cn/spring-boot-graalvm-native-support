@@ -30,5 +30,18 @@ jobs:
           java-version: ${{ matrix.java-version }}
           distribution: 'zulu'
 
+      - name: Cache modules
+        uses: actions/cache@v5
+        id: cache-modules
+        with:
+          path: |
+            ~/.m2/repository
+          key: ${{ matrix.os }}-${{ hashFiles('pom.xml', '**/pom.xml', '**/**/pom.xml', '**/package.json') }}
+          restore-keys: |
+            ${{ matrix.os }}-
+
       - name: Maven Version
         run: mvn -v
+
+      - name: Maven native Build
+        run: mvn -V -B clean package -Pnative native:compile
