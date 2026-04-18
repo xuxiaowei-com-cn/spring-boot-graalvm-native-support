@@ -14,7 +14,7 @@ jobs:
       matrix:
         java-version: [ 25 ]
         runner:
-          #- macos-13
+          - macos-26-intel
           - macos-latest
           - ubuntu-24.04
           - ubuntu-24.04-arm
