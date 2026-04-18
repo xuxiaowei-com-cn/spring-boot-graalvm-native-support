@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.java-version }}
-          distribution: 'zulu'
+          distribution: 'graalvm'
 
       - name: Cache modules
         uses: actions/cache@v5
