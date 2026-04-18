@@ -17,7 +17,7 @@ jobs:
           #- macos-13
           - macos-latest
           - ubuntu-latest
-          - ubuntu-24.04-arm
+          - ubuntu-latest-arm
           - windows-latest
 
     steps:
