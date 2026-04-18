@@ -13,22 +13,28 @@ jobs:
     strategy:
       matrix:
         java-version: [ 25 ]
+        runner:
+          - macos-13
+          - macos-latest
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+          - windows-latest
         include:
-          - os: macos
+          - runner: macos-13
+            os: macos
             arch: x86_64
-            runner: macos-13
-          - os: macos
+          - runner: macos-latest
+            os: macos
             arch: arm64
-            runner: macos-latest
-          - os: linux
+          - runner: ubuntu-latest
+            os: linux
             arch: x86_64
-            runner: ubuntu-latest
-          - os: linux
+          - runner: ubuntu-24.04-arm
+            os: linux
             arch: arm64
-            runner: ubuntu-24.04-arm
-          - os: windows
+          - runner: windows-latest
+            os: windows
             arch: x86_64
-            runner: windows-latest
 
     steps:
       - name: Checkout repository
