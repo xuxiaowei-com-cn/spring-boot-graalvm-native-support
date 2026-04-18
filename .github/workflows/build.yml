@@ -1,0 +1,44 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+      - xuxiaowei/*
+
+jobs:
+  build:
+    name: build
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        java-version: [ 25 ]
+        include:
+          - os: macos
+            arch: x86_64
+            runner: macos-13
+          - os: macos
+            arch: arm64
+            runner: macos-latest
+          - os: linux
+            arch: x86_64
+            runner: ubuntu-latest
+          - os: linux
+            arch: arm64
+            runner: ubuntu-24.04-arm
+          - os: windows
+            arch: x86_64
+            runner: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v5
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'zulu'
+
+      - name: Maven Version
+        run: mvn -v
