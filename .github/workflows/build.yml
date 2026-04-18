@@ -15,7 +15,7 @@ jobs:
         java-version: [ 25 ]
         runner:
           - macos-26-intel
-          - macos-latest
+          - macos-26
           - ubuntu-24.04
           - ubuntu-24.04-arm
           - windows-latest
