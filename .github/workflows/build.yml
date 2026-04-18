@@ -43,5 +43,16 @@ jobs:
       - name: Maven Version
         run: mvn -v
 
+      - name: Get Artifact ID
+        id: get-artifact-id
+        run: echo "ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
+        shell: bash
+
       - name: Maven native Build
-        run: mvn -V -B clean package -Pnative native:compile
+        run: mvn -V -B clean package -Pnative native:compile "-DimageName=${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}"
+
+      - name: Upload native artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}
+          path: target/${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}*
