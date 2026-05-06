@@ -58,3 +58,4 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}
           path: target/${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}*
+
