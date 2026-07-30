@@ -51,6 +51,11 @@ jobs:
         run: echo "ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
         shell: bash
 
+      - name: Get Version
+        id: get-version
+        run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+        shell: bash
+
       - name: Maven native Build
         run: mvn -V -B clean package -Pnative native:compile "-DimageName=${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}"
 
@@ -58,5 +63,6 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: ${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}
-          path: target/${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}*
-
+          path: |
+            target/${{ env.ARTIFACT_ID }}-${{ env.VERSION }}-*
+            !target/*.jar
