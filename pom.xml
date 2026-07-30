@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>25</java.version>
 		<native.platform>${os.arch}</native.platform>
+		<native.buildArgs></native.buildArgs>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -55,6 +56,7 @@
 				<artifactId>native-maven-plugin</artifactId>
 				<configuration>
 					<imageName>${project.artifactId}-${project.version}-${native.platform}</imageName>
+					<buildArgs>${native.buildArgs}</buildArgs>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -123,6 +125,7 @@
 			</activation>
 			<properties>
 				<native.platform>linux-amd64</native.platform>
+				<native.buildArgs>--static --libc=musl</native.buildArgs>
 			</properties>
 		</profile>
 		<profile>
@@ -135,6 +138,7 @@
 			</activation>
 			<properties>
 				<native.platform>linux-arm64</native.platform>
+				<native.buildArgs>--static --libc=musl</native.buildArgs>
 			</properties>
 		</profile>
 		<profile>
