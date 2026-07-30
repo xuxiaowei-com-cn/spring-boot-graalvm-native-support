@@ -65,7 +65,7 @@ jobs:
         shell: bash
 
       - name: Maven native Build
-        run: mvn -V -B clean package -Pnative native:compile "-DimageName=${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}"
+        run: mvn -V -B clean package -Pnative native:compile
 
       - name: Upload native artifact
         uses: actions/upload-artifact@v7
