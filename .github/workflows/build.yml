@@ -38,7 +38,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc musl-dev musl-tools zlib1g-dev zlib1g-static
+          sudo apt-get install -y gcc musl-dev musl-tools zlib1g-dev
           find /usr -name "libz.a"
 
       - name: Cache modules
