@@ -58,7 +58,11 @@ jobs:
         shell: bash
 
       - name: Maven native Build
-        run: mvn -V -B clean package -Pnative native:compile
+        shell: sh
+        run: |
+          mvn -V -B clean package -Pnative native:compile
+          ls -lha target
+          rm -rf target/*.jar
 
       - name: Upload native artifact
         uses: actions/upload-artifact@v7
@@ -66,4 +70,3 @@ jobs:
           name: ${{ env.ARTIFACT_ID }}-${{ runner.os }}-${{ runner.arch }}
           path: |
             target/${{ env.ARTIFACT_ID }}-${{ env.VERSION }}-*
-            !target/*.jar
